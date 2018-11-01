@@ -7,7 +7,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  res.send('this will be our form');
+  var first_name = req.body.first_name;
+  var last_name = req.body.family_name;
+
+  res.redirect('/users/printout/?first_name=' + first_name + '&last_name=' + last_name );
+});
+
+router.get('/printout', function(req, res, next) {
+  var first_name = req.query.first_name;
+  var last_name = req.query.last_name;
+  console.log(first_name);
+  res.send('Hello ' + first_name + " " + last_name);
 });
 
 
