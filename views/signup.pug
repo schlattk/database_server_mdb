@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  p Welcome to #{title}
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name:
+      input#first_name(type='text' placeholder='First name (Christian)' name='first_name' )
+      label(for='family_name') Family Name:
+      input#family_name(type='text' placeholder='Family name (surname)' name='family_name')
+      label(for='email') Email:
+      input#email(type='email' name='email' placeholder='peter@pointer.com')
+      button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
