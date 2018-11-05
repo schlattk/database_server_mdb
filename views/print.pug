@@ -1,4 +1,9 @@
 extends layout
 
 block content
-  h1(id='print') Hello #{first_name} #{family_name} thank you for registering.
+
+
+  ul
+    each subscriber in subscriber_list
+
+        | Hello #{subscriber.first_name} #{subscriber.family_name} thank you for subscribing!

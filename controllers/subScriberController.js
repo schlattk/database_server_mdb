@@ -1,7 +1,7 @@
 var Subscriber = require('../models/subscriberModel');
 
-exports.subscriber_print = function(req, res, next) {
-    res.render('print', { title: 'Create Subscriber'});
+exports.subscriber_signup = function(req, res, next){
+  res.render('signup',{title:'Sign Up Page'});
 };
 
 exports.subscriber_create = function(req,res,next){
@@ -13,9 +13,20 @@ exports.subscriber_create = function(req,res,next){
                 });
                 subscriber.save(function (err) {
                     if (err) { return next(err); }
-                    res.redirect('/subscribers/print');
+                    res.redirect('/subscriber/print');
                 });
-  };
+};
+
+exports.subscriber_print = function(req, res, next) {
+  Subscriber.find()
+        .sort({$natural:-1})
+        .limit(1)
+        .exec(function (err, list_subscribers) {
+          if (err) { return next(err); }
+          console.log(list_subscribers);
+          res.render('print', {subscriber_list: list_subscribers });
+  });
+};
 
 exports.subscriber_list = function(req, res, next) {
 
@@ -23,7 +34,6 @@ exports.subscriber_list = function(req, res, next) {
     .sort([['family_name', 'ascending']])
     .exec(function (err, list_subscribers) {
       if (err) { return next(err); }
-      //Successful, so render
       res.render('subscriber_list', { title: 'List of Subscribers', subscriber_list: list_subscribers });
     });
 
