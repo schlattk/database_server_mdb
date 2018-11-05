@@ -1,7 +1,7 @@
 import { Selector } from 'testcafe';
 
 fixture `Signup form`
-    .page `http://localhost:3000/users`;
+    .page `http://localhost:3000/subscriber`;
 
   test('test the signup page', async t => {
     await t

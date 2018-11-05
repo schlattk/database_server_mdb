@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  ul
+  ul#list
     each subscriber in subscriber_list
       li
         |#{subscriber.first_name} #{subscriber.family_name} #{subscriber.email}
