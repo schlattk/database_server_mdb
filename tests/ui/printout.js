@@ -14,3 +14,12 @@ fixture `check redirect`
         .click('#submit')
         .expect(getPageUrl()).contains('http://localhost:3000/users/printout');
   });
+
+  test('checking the rendering', async t => {
+    await t
+        .typeText('#first_name', 'Jamie')
+        .typeText('#family_name', 'Oliver')
+        .typeText('#email', 'jamie@oliver.com')
+        .click('#submit')
+        .expect(Selector('#print').innerText).contains('Hello Jamie Oliver your email is jamie@oliver.com')
+  });
